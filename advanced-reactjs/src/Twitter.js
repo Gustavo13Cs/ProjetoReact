@@ -27,10 +27,17 @@ class Twitter extends Component {
         console.log('componentWillUnmount: fui removido')
     }
 
+   /*  tweet = () => {
+        setState ({
+            tweet: true
+        })
+    } */
     // Retorna um valor booleano, falso ou true
     shouldComponentUpdate (nextState, nextProps) {
         return this.state.tweet !== nextState.tweet || nextProps.loading !== this.props.loading
     }
+
+
     render () {
         const {posts} = this.props 
         console.log('render',posts)
