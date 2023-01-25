@@ -1,32 +1,36 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useState} from 'react'
+import Button from './Component/Button'
+import Calc from './Component/Calc'
   
 
 function App () {
 
-  const inputRef = useRef()
-  const count = useRef(1)
-  
+  const [value, setValue] = useState(0)
+  const [min, setMin] = useState(0)
+  const [max, setMax] = useState(30)
 
-  const handleClick = () => {
-    inputRef.current.focus()
-    console.log('input.current', inputRef.current)
+  const handleCLick = () => {
+    setMin(10)
   }
 
-  // o valor passa , mais n atualiza a pagina , mais ele e mudado 
-  useEffect (() => {
-    setTimeout (() => {
-      console.log('passou aqui')
-      count.current = 300
-    }, 3000)
-  })
+  const handleCalc = () => {
+    setValue(min + max)
+  }
 
   return (
-    <>
-     <h1>Valor de count:{count.current}</h1>
-      Foco: <input ref={inputRef}/>
-      <br/>
-      <button onClick={handleClick}>Focar</button>
-    </>
+    <div>
+        <Button  onClick={handleCLick}>
+           Adicionar Carrinho
+        </Button>
+        <div>
+          <h1>Valor Calculado: {value}</h1>
+          <Calc
+          min= {min}
+          max= {max}
+          onChange= {handleCalc}
+          />
+        </div>
+    </div>
   )
 }
 
